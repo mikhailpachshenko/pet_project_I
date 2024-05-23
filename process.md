@@ -20,6 +20,8 @@
 1. `touch main.go && open main.go`
 2. `go mod init github.com/mikhailpachshenko/pet_project_I.git `
 3. Выполняем команду из графы про **Web framework** (по необходимости)
+4. Создаем отдельную ветку и папку `model` и добавляем необходимые структуры для работы с **хранилищем** 
+5. 
 
 ------
 
