@@ -14,6 +14,10 @@ type Handler struct {
 	storage m.Storage
 }
 
+func NewHandler(storage m.Storage) *Handler {
+	return &Handler{storage: storage}
+}
+
 func (h *Handler) CreateEmployee(c *gin.Context) {
 	var employee m.Employee
 	if err := c.BindJSON(&employee); err != nil {
@@ -27,6 +31,34 @@ func (h *Handler) CreateEmployee(c *gin.Context) {
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"id": employee.ID,
+	})
+}
+
+func (h *Handler) GetEmployee(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		fmt.Printf("FAILED: to convert id param to int: %s\n", err.Error())
+		c.JSON(http.StatusBadRequest, m.ErrorResponse{
+			Message: err.Error(),
+		})
+		return
+	}
+
+	employee, err := h.storage.Get(id)
+	if err != nil {
+		fmt.Printf("FAILED: to get employee: %s\n", err.Error())
+		c.JSON(http.StatusBadRequest, m.ErrorResponse{
+			Message: err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"id":     employee.ID,
+		"Name":   employee.Name,
+		"Age":    employee.Age,
+		"Sex":    employee.Sex,
+		"Salary": employee.Salary,
 	})
 }
 
