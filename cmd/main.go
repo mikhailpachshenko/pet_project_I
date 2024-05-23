@@ -1,10 +1,16 @@
 package main
 
 import (
+	nH "github.com/mikhailpachshenko/pet_project_I.git/handler"
+	m "github.com/mikhailpachshenko/pet_project_I.git/models"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	memoryStorage := m.NewMemoryStorage()
+	handler := nH.NewHandler(memoryStorage)
+
 	router := gin.Default() // создаём объект типа *gin.Engine
 
 	router.POST("/employee")       // создание сотрудника
