@@ -9,28 +9,31 @@
 
 #### В проекте будем использовать:
 
-- Вэб-фреймворк — Gin
+- Вeб-фреймворк — Gin
 
   `git-gonic/gin`
-
-
 
 ------
 
 #### Процесс:
 
 1. `touch main.go && open main.go`
-2. `go mod init`
+2. `go mod init github.com/mikhailpachshenko/pet_project_I.git `
+3. Выполняем команду из графы про **Web framework** (по необходимости)
 
 ------
 
-
-
 #### Web framework
 
-1. Создадим объект `*gin.Engine` в функции `main`  
+Для начала работы:
+
+1. `go get - u hithub.com/gin-gonic/gin`
 
    
 
+1. Создадим объект `*gin.Engine` в функции `main`  
+
 2. Запустим HTTP сервер на стандартном порту (`router.Run()`) либо с указанием порта (`router.Run(":8000")`)
+
+   
 
