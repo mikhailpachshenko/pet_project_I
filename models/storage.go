@@ -1,6 +1,7 @@
 package model
 
 import (
+	"errors"
 	"sync"
 )
 
@@ -32,5 +33,28 @@ func (s *MemoryStorage) Insert(e *Employee) {
 
 	s.counter++
 
+	s.Unlock()
+}
+
+func (s *MemoryStorage) Get(id int) (Employee, error) {
+	s.Lock()
+	defer s.Unlock()
+
+	employee, ok := s.data[id]
+	if !ok {
+		return employee, errors.New("employee not found")
+	}
+	return employee, nil
+}
+
+func (s *MemoryStorage) Update(id int, e Employee) {
+	s.Lock()
+	s.data[id] = e
+	s.Unlock()
+}
+
+func (s *MemoryStorage) Delete(id int) {
+	s.Lock()
+	delete(s.data, id)
 	s.Unlock()
 }
