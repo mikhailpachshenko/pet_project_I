@@ -23,3 +23,5 @@ go.work
 *.LSOverride
 
 *.log*
+
+vendor
