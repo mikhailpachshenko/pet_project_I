@@ -18,6 +18,8 @@
 go.work
 
 # System files in macOS
-.DS_Store
-.AppleDouble
-.LSOverride
+*.DS_Store
+*.AppleDouble
+*.LSOverride
+
+*.log*
