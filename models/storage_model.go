@@ -18,7 +18,7 @@ type MemoryStorage struct {
 	sync.Mutex
 }
 
-func NewMemoryStoraget() *MemoryStorage {
+func NewMemoryStorage() *MemoryStorage {
 	return &MemoryStorage{
 		data:    make(map[int]Employee),
 		counter: 1,
